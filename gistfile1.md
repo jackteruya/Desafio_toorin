@@ -53,26 +53,46 @@ from typing import Tuple
 
 class Test:
     def fizz_buzz(self) -> list:
-        ...
+        list_fizz_buzz = []
+        for x in range(1, 101):
+            if x % 3 == 0 and x % 5 == 0:
+                list_fizz_buzz.append("FizzBuzz!")
+            elif x % 3 == 0:
+                list_fizz_buzz.append("Fizz!")
+            elif x % 5 == 0:
+                list_fizz_buzz.append("Buzz!")
+            else:
+                list_fizz_buzz.append(x)
+        return list_fizz_buzz
 
     def snake_to_camel(self, data: dict) -> dict:
-        ...
+        new_data = {}
+        for key, value in data.items():
+            if '_' in key:
+                new_key = list(key.split('_'))
+                camel = new_key[0] + ''.join(x.title() for x in new_key[1:])
+                new_data[camel] = value
+            else:
+                new_data[key] = value
+        return new_data
 
     def get_omdb_movie(self, title: str) -> Tuple[int, dict]:
-        ...
+        response = requests.get(f'http://www.omdbapi.com/?apikey=fb69039d&t={title}') #import requests
+        data = (response.status_code, response.json())
+        return data
 
     def get_awesome_project_link(self) -> str:
-        return "https://github.com/jackteruya/Desafio_toorin.git"
+        return "https://github.com/jackteruya/Desafio_toorin.git" 
 
     def run(self):
         snake_data = {
             "first_name": "Jackson",
-            "last_name": "Santana Teruya",
-            "e-mail": "jack.teruya@gmail.com",
-            "cpf": "046.491.581-33",
-            "marital_status": "Casado",
-            "age": 28,
-            "mobile_phone": "67992798321",
+            "last_name": "Souza",
+            "e-mail": "email@email.com",
+            "cpf": "156.999.777-11",
+            "marital_status": "Solteiro",
+            "age": 35,
+            "mobile_phone": "1111111111",
         }
         movie_name = "Toy Story"
 

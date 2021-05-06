@@ -8,13 +8,18 @@ atributos no formato 'camelCase'.
 {'someName': 'lorem ipsum'}
 """
 
-def snake_to_camel(dados:dict):
-    for key, value in dados.items():
+
+def snake_to_camel(data: dict):
+    newData = {}
+    for key, value in data.items():
         if '_' in key:
-            newKey = list(key.split('_'))
-            camel = newKey[0] + ''.join(x.title() for x in newKey[1:])
-        return {camel: value}
+            new_key = list(key.split('_'))
+            camel = new_key[0] + ''.join(x.title() for x in new_key[1:])
+            newData[camel] = value
+        else:
+            newData[key] = value
+    return newData
 
 
 if __name__ == '__main__':
-    print(snake_to_camel({"some_name_last_na":"lorem ipsum"}))
+    print(snake_to_camel({"some_name_last_na": "lorem ipsum", 'nome':'Jose', 'idade_now':28}))
